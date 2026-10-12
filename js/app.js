@@ -29,7 +29,16 @@ if (header) {
 	const rigaSezioni = $('[data-chips]', header);
 	const largo = matchMedia('(min-width: 1024px)');
 	const aggiornaHeader = () => {
-		if (!fascia || !rigaSezioni) return header.classList.toggle('is-scrolled', window.scrollY > soglia());
+		if (!fascia || !rigaSezioni) {
+			// Home (12/10 sera): le sezioni ora stanno sotto la barra di ricerca, sulla foto. Passata la foto,
+			// la testata diventa bianca e le prende lei, così restano sempre a portata di mano.
+			// (2 px di margine: la freccia ↓ ferma la pagina proprio sul confine della foto)
+			const casa = Boolean(rigaSezioni) && header.classList.contains('mm-header--home');
+			const giu = window.scrollY > soglia() - (casa ? 2 : 0);
+			header.classList.toggle('is-scrolled', giu);
+			if (casa) header.classList.toggle('con-sezioni', giu);
+			return;
+		}
 		const f = fascia.getBoundingClientRect();
 		const fondoTestata = header.getBoundingClientRect().bottom;
 		const cima = largo.matches ? fondoTestata : fondoTestata - rigaSezioni.offsetHeight;
