@@ -4,9 +4,9 @@
 // - il controllo dei dati di chi prenota
 // - la schermata finale della prova
 // Nessuna richiesta in rete: in questa versione tutto resta nella pagina.
-import { euro, codiceProva } from './prezzi.js?v=2';
-import { ravviva } from './tendine.js?v=2';
-import { icone } from './icone.js?v=2';
+import { euro, codiceProva } from './prezzi.js?v=eefd22c5';
+import { ravviva } from './tendine.js?v=eefd22c5';
+import { icone } from './icone.js?v=eefd22c5';
 
 const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => Array.from(el.querySelectorAll(s));

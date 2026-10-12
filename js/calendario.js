@@ -5,9 +5,9 @@
 // - modo «giorno» (una corsa): un tocco sceglie il giorno
 // Le scelte restano in una bozza: chiudere (×, Esc, clic fuori) non cambia niente; solo «Salva» le conferma.
 // Giorni civili sul calendario di Roma (Europe/Rome).
-import { durata, daTastiera } from './tendine.js?v=2';
-import { chiave, daChiave, piu, oggiRoma, notti } from './prezzi.js?v=2';
-import { lungo, corto } from './sito.js?v=2';
+import { durata, daTastiera } from './tendine.js?v=eefd22c5';
+import { chiave, daChiave, piu, oggiRoma, notti } from './prezzi.js?v=eefd22c5';
+import { lungo, corto } from './sito.js?v=eefd22c5';
 
 const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => Array.from(el.querySelectorAll(s));

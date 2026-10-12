@@ -1,11 +1,11 @@
 // PERCORSO «SOGGIORNO»: date e mansarda → ospiti → transfer (facoltativo) → dati → pagamento.
 // Indipendente dal percorso delle corse (corsa.js); il transfer si può aggiungere qui dentro al soggiorno.
 // I conti li fa prezzi.js; in questa versione niente parte verso un server (pagamento.js, MODO 'demo').
-import { contoSoggiorno, contoCorsa, euro, piuChiave, daNotte, libera, formulaAmmessa, conAnticipo } from './prezzi.js?v=2';
-import { $, $$, dati, memoria, parametri, corto, lungo, quanteNotti, limiti, notteOccupata, soggiornoLibero, dateValide, occupate } from './sito.js?v=2';
-import { apriCalendario } from './calendario.js?v=2';
-import { avviaPassi, scriviConto, controllaDati, mostraFatto } from './percorso.js?v=2';
-import { paga } from './pagamento.js?v=2';
+import { contoSoggiorno, contoCorsa, euro, piuChiave, daNotte, libera, formulaAmmessa, conAnticipo } from './prezzi.js?v=eefd22c5';
+import { $, $$, dati, memoria, parametri, corto, lungo, quanteNotti, limiti, notteOccupata, soggiornoLibero, dateValide, occupate } from './sito.js?v=eefd22c5';
+import { apriCalendario } from './calendario.js?v=eefd22c5';
+import { avviaPassi, scriviConto, controllaDati, mostraFatto } from './percorso.js?v=eefd22c5';
+import { paga } from './pagamento.js?v=eefd22c5';
 
 const box = $('[data-prenota]');
 const reg = dati.regole || {};

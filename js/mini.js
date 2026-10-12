@@ -1,10 +1,10 @@
 // Riquadri piccoli con le date: la barra della home, il riquadro di lato e la barra in fondo delle pagine
 // delle mansarde («Arrivo / Partenza / Ospiti») e dei servizi con autista («Giorno / Passeggeri»).
 // Le date scelte qui arrivano già scritte nel percorso di prenotazione (nell'indirizzo della pagina).
-import { contoSoggiorno, euro, daNotte, daChiave } from './prezzi.js?v=2';
-import { $, $$, dati, memoria, conParametri, corto, quanteNotti, limiti, notteOccupata, soggiornoLibero, dateValide } from './sito.js?v=2';
-import { apriCalendario } from './calendario.js?v=2';
-import { ravviva } from './tendine.js?v=2';
+import { contoSoggiorno, euro, daNotte, daChiave } from './prezzi.js?v=eefd22c5';
+import { $, $$, dati, memoria, conParametri, corto, quanteNotti, limiti, notteOccupata, soggiornoLibero, dateValide } from './sito.js?v=eefd22c5';
+import { apriCalendario } from './calendario.js?v=eefd22c5';
+import { ravviva } from './tendine.js?v=eefd22c5';
 
 /* ---------- Soggiorno ---------- */
 const box = $('[data-mini="soggiorno"]');

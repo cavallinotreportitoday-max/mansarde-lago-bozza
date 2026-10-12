@@ -1,5 +1,5 @@
 // Cose in comune agli script delle pagine: dati del sito, memoria delle scelte, date scritte per esteso, disponibilità.
-import { chiave, daChiave, piu, piuMesi, oggiRoma, occupateEsempio, libera, notti } from './prezzi.js?v=2';
+import { chiave, daChiave, piu, piuMesi, oggiRoma, occupateEsempio, libera, notti } from './prezzi.js?v=eefd22c5';
 
 export const $ = (s, el = document) => el.querySelector(s);
 export const $$ = (s, el = document) => Array.from(el.querySelectorAll(s));

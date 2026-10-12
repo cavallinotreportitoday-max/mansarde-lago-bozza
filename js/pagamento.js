@@ -11,8 +11,8 @@
 // 4. Stripe avvisa il server (webhook) che il pagamento è riuscito: solo allora la prenotazione è confermata.
 // Il prezzo scritto nella pagina non è mai quello che fa fede: decide il server.
 // Qui servirà soltanto sostituire il ramo 'demo' di paga() con la chiamata al server: il resto del sito non cambia.
-import { durata, daTastiera } from './tendine.js?v=2';
-import { euro } from './prezzi.js?v=2';
+import { durata, daTastiera } from './tendine.js?v=eefd22c5';
+import { euro } from './prezzi.js?v=eefd22c5';
 
 export const MODO = 'demo';
 
