@@ -16,7 +16,23 @@
 			@font-face { font-family: 'Hanken Grotesk'; font-style: normal; font-weight: 600; font-display: swap; src: url('./fonts/hanken-grotesk-latin-600-normal.woff2') format('woff2'); }
 			@font-face { font-family: 'Hanken Grotesk'; font-style: normal; font-weight: 700; font-display: swap; src: url('./fonts/hanken-grotesk-latin-700-normal.woff2') format('woff2'); }
 		</style>
+		<!-- Le foto provvisorie arrivano da Unsplash: il collegamento si prepara subito, così compaiono prima -->
+		<link rel="preconnect" href="https://images.unsplash.com" crossorigin />
 		<script>
+			// Foto provvisoria che non arriva (rete assente, server bloccato): al suo posto l'illustrazione che sta nel sito.
+			// Vale anche per il link che apre la foto in grande.
+			function fotoRiserva(img) {
+				var r = img.getAttribute('data-riserva');
+				if (!r) return;
+				img.removeAttribute('data-riserva');
+				img.removeAttribute('srcset');
+				img.removeAttribute('sizes');
+				img.src = r;
+				var a = img.closest ? img.closest('a[data-visore-link]') : null;
+				if (a) a.setAttribute('href', r);
+			}
+			// l'avviso «foto non arrivata» si ascolta da qui, prima che le foto comincino a caricarsi
+			document.addEventListener('error', function (e) { var t = e.target; if (t && t.tagName === 'IMG') fotoRiserva(t); }, true);
 			// Col tasto indietro o ricaricando: niente animazioni d'entrata (tolto subito dopo il primo disegno)
 			try {
 				var nav = performance.getEntriesByType('navigation')[0];

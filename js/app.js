@@ -129,9 +129,12 @@ if (visore && typeof visore.showModal === 'function') {
 		const img = document.createElement('img');
 		img.alt = mini?.alt || '';
 		img.decoding = 'async';
+		// foto provvisoria (arriva da fuori, tagliata in 3:2 nei riquadri): in grande si guarda intera, con le sue misure;
+		// se non arriva, l'illustrazione di riserva
+		const riserva = mini?.dataset.riserva;
 		if (grande) {
 			img.src = a.getAttribute('href');
-			if (mini?.srcset) {
+			if (mini?.srcset && !riserva) {
 				img.srcset = mini.srcset;
 				img.sizes = '100vw';
 			}
@@ -139,7 +142,12 @@ if (visore && typeof visore.showModal === 'function') {
 			img.src = mini?.currentSrc || mini?.src || a.getAttribute('href');
 			img.loading = 'lazy';
 		}
-		if (mini?.width && mini?.height) {
+		if (riserva)
+			img.onerror = () => {
+				img.onerror = null;
+				img.src = riserva;
+			};
+		if (mini?.width && mini?.height && !(grande && riserva)) {
 			img.width = mini.width;
 			img.height = mini.height;
 		}

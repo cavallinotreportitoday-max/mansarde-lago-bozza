@@ -97,7 +97,16 @@ const aggiorna = () => {
 	const m = casa();
 	$('[data-riep-casa]', riep).hidden = !m;
 	if (m) {
-		$('[data-riep-foto]', riep).src = m.foto;
+		const f = $('[data-riep-foto]', riep);
+		if (f.dataset.casa !== m.slug) {
+			f.dataset.casa = m.slug;
+			// foto provvisoria che non arriva: l'illustrazione che sta nel sito
+			f.onerror = () => {
+				f.onerror = null;
+				f.src = m.fotoRiserva;
+			};
+			f.src = m.foto;
+		}
 		$('[data-riep-nome]', riep).textContent = `${m.nome}, ${m.luogo}`;
 		$('[data-riep-quando]', riep).textContent = piene ? `${corto(s.dal)} – ${corto(s.al)} · ${s.adulti} ${s.adulti === 1 ? 'ospite' : 'ospiti'}` : 'Date da scegliere';
 	}
