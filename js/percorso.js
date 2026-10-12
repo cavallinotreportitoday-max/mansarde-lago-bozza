@@ -4,8 +4,9 @@
 // - il controllo dei dati di chi prenota
 // - la schermata finale della prova
 // Nessuna richiesta in rete: in questa versione tutto resta nella pagina.
-import { euro, codiceProva } from './prezzi.js?v=1';
-import { ravviva } from './tendine.js?v=1';
+import { euro, codiceProva } from './prezzi.js?v=2';
+import { ravviva } from './tendine.js?v=2';
+import { icone } from './icone.js?v=2';
 
 const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => Array.from(el.querySelectorAll(s));
@@ -164,7 +165,9 @@ export function controllaDati(dove) {
 }
 
 const SPUNTA =
-	'<svg class="icon" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7" vector-effect="non-scaling-stroke"/></svg>';
+	'<svg class="icon" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="' +
+	icone.check[1] +
+	'" vector-effect="non-scaling-stroke"/></svg>';
 
 /**
  * Schermata finale della PROVA: prende il posto di passi e conto.
@@ -190,7 +193,7 @@ export function mostraFatto(o) {
 		location.reload();
 	});
 	comandi.append(casa, ancora);
-	fatto.replaceChildren(icona, el('h2', 'pn-fatto__titolo', o.titolo), el('p', 'pn-fatto__sotto', 'Nel sito vero a questo punto arriva l’email di conferma.'), dl, nota, comandi);
+	fatto.replaceChildren(icona, el('p', 'lg-mano lg-mano--saluto', 'Grazie, a presto!'), el('h2', 'pn-fatto__titolo', o.titolo), el('p', 'pn-fatto__sotto', 'Nel sito vero a questo punto arriva l’email di conferma.'), dl, nota, comandi);
 	for (const x of $$('[data-passi], [data-riepilogo]', o.box)) x.hidden = true;
 	for (const x of $$('[data-pn-fondo]')) x.hidden = true;
 	o.box.classList.add('is-fatto');

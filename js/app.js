@@ -1,7 +1,7 @@
 // Interazioni comuni del sito (dalla base grafica): testata, barra in fondo, visore foto, gallerie, mappe, entrate morbide.
 // Calendario, date, percorsi di prenotazione e pagamento di prova stanno nei loro file e si caricano solo dove servono.
 // Nessuna richiesta verso server: in questa versione il sito è scollegato (vedi LEGGIMI.md).
-import { durata } from './tendine.js?v=1';
+import { durata } from './tendine.js?v=2';
 
 const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => Array.from(el.querySelectorAll(s));
@@ -562,7 +562,7 @@ document.addEventListener('click', (e) => {
 });
 
 /* Script delle singole parti: si caricano solo dove servono */
-const carica = (file) => import(`./${file}?v=1`).catch((e) => console.error('[sito]', file, e));
+const carica = (file) => import(`./${file}?v=2`).catch((e) => console.error('[sito]', file, e));
 if ($('[data-mini]')) carica('mini.js');
 if ($('[data-prenota]')) carica('prenota.js');
 if ($('[data-corsa]')) carica('corsa.js');

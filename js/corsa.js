@@ -1,11 +1,11 @@
 // PERCORSO «CORSA CON AUTISTA»: servizio → percorso → quando e in quanti → dati → pagamento.
 // Indipendente dal percorso del soggiorno (prenota.js). Quattro servizi: transfer, andata e ritorno, shopping, escursioni.
 // I conti li fa prezzi.js (contoCorsa); in questa versione niente parte verso un server (pagamento.js, MODO 'demo').
-import { contoCorsa, euro, daChiave } from './prezzi.js?v=1';
-import { $, $$, dati, memoria, parametri, corto, lungo, limiti } from './sito.js?v=1';
-import { apriCalendario } from './calendario.js?v=1';
-import { avviaPassi, scriviConto, controllaDati, mostraFatto } from './percorso.js?v=1';
-import { paga } from './pagamento.js?v=1';
+import { contoCorsa, euro, daChiave } from './prezzi.js?v=2';
+import { $, $$, dati, memoria, parametri, corto, lungo, limiti } from './sito.js?v=2';
+import { apriCalendario } from './calendario.js?v=2';
+import { avviaPassi, scriviConto, controllaDati, mostraFatto } from './percorso.js?v=2';
+import { paga } from './pagamento.js?v=2';
 
 const box = $('[data-corsa]');
 const cfg = dati.cfgCorse;
