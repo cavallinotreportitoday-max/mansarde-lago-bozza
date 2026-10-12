@@ -344,6 +344,61 @@ if (sfondo && zonaCerca) {
 	});
 }
 
+/* Home: le pillole sotto la barra di ricerca. «Mansarde» e «Autista» aprono una tendina con le loro voci.
+   Una sola aperta alla volta; si chiude toccando fuori, con Esc o toccando di nuovo la pillola.
+   Sul computer la tendina sta sotto la sua pillola (senza uscire dallo schermo); sul telefono è larga quanto lo schermo. */
+const pillole = $('[data-pillole]');
+if (pillole) {
+	const tendina = (t) => $(`[data-tendina="${t.dataset.pillola}"]`, pillole);
+	let aperta = null;
+	const metti = () => {
+		if (!aperta) return;
+		const box = tendina(aperta);
+		box.style.left = '';
+		if (!matchMedia('(min-width: 761px)').matches) return; // telefono: ci pensa lo stile
+		const r = aperta.getBoundingClientRect();
+		const n = pillole.getBoundingClientRect();
+		const x = Math.max(20, Math.min(r.left, innerWidth - box.offsetWidth - 20));
+		box.style.left = `${Math.round(x - n.left)}px`;
+	};
+	const chiudi = (fuoco = false) => {
+		if (!aperta) return;
+		tendina(aperta).hidden = true;
+		aperta.setAttribute('aria-expanded', 'false');
+		if (fuoco) aperta.focus();
+		aperta = null;
+	};
+	const apri = (t) => {
+		chiudi();
+		aperta = t;
+		t.setAttribute('aria-expanded', 'true');
+		const box = tendina(t);
+		box.hidden = false;
+		metti();
+		// schermi bassi: se la tendina esce sotto, la pagina scende quel tanto che basta per vederla tutta
+		const sotto = box.getBoundingClientRect().bottom - (innerHeight - 16);
+		if (sotto > 0) scrollBy({ top: sotto, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+	};
+	for (const t of $$('[data-pillola]', pillole)) t.addEventListener('click', () => (aperta === t ? chiudi() : apri(t)));
+	document.addEventListener('click', (e) => {
+		if (aperta && !pillole.contains(e.target)) chiudi();
+	});
+	document.addEventListener('keydown', (e) => {
+		if (e.key === 'Escape' && aperta) chiudi(true);
+	});
+	// con la tastiera: uscendo dalle pillole la tendina si chiude
+	pillole.addEventListener('focusout', (e) => {
+		if (aperta && e.relatedTarget && !pillole.contains(e.relatedTarget)) chiudi();
+	});
+	addEventListener('resize', metti);
+	// la riga che scorre col dito (telefoni stretti): la tendina aperta segue la sua pillola
+	$('.lg-chips__in', pillole)?.addEventListener('scroll', metti, { passive: true });
+	// tornando indietro da una pagina: tendina chiusa
+	addEventListener('pageshow', (e) => {
+		if (e.persisted) chiudi();
+	});
+}
+
 /* Sezioni nella testata (in ogni pagina): la voce attiva si vede subito, anche quando la riga scorre di lato.
    Si centra solo se non si vede già intera (lo fa già lo script in fondo alla pagina, prima del primo disegno). */
 const barraChips = $('[data-chips]');
